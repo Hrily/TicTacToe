@@ -4,10 +4,10 @@ Android TicTacToe Game, with computer opponent.
 
 The game has computer opponent, which makes his moves according to a simple strategy of scoring cells and choosing the cell with maximum score.
 
-#Download
+## Download
 You can download the game [here](http://)
 
-#How to install
+## How to install
 PS: If you downloaded the file on you phone already, just ignore step 1.
 
 1. Put the file you downloaded on your phone's storage
@@ -15,3 +15,31 @@ PS: If you downloaded the file on you phone already, just ignore step 1.
 3. With a file manager app of your choice, navigate to the file
 4. Install it
 5. Enjoy! :)
+
+## Working on the app
+
+If you want to help us to build this app, you will need to follow these steps.
+
+### Setting up Android Studio
+
+* [Download Android Studio](https://developer.android.com/studio/index.html)
+* [Install Android Studio](http://www.javaworld.com/article/3095406/android/android-studio-for-beginners-part-1-installation-and-setup.html) - A guide to you setup all you need to use Android Studio.
+
+### Download our repository
+
+First of all, do a fork of our repository to your git account. After that, follow the steps bellow:
+
+1. Create a folder on you computer
+2. Open your Terminal (Mac/Linux) or CMD (Windows)
+3. Navigate to the folder you just created and type
+```
+git clone [your fork link]
+```
+
+### Open on Android Studio
+
+* Select the option to open a new project
+* Navigate to the folder you donwloaded your fork
+* Open it :D
+
+After these steps, just code !
