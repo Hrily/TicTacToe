@@ -5,7 +5,7 @@ Android TicTacToe Game, with computer opponent.
 The game has computer opponent, which makes his moves according to a simple strategy of scoring cells and choosing the cell with maximum score.
 
 ## Download
-You can download the game [here](http://)
+You can download the game [here](https://docs.google.com/uc?export=download&id=0B9boJdznIbrMV1p5bS1yQVJTdm8)
 
 ## How to install
 PS: If you downloaded the file on you phone already, just ignore step 1.
@@ -43,3 +43,7 @@ git clone [your fork link]
 * Open it :D
 
 After these steps, just code !
+
+## Build and Run
+
+Please, follow [this link](https://developer.android.com/studio/run/index.html) to instructions of how to build and run the code you just created.
