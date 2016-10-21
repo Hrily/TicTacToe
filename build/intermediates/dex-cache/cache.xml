@@ -2,60 +2,76 @@
 <items version="2" >
 
     <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
         jumboMode="true"
+        optimize="true"
         revision="23.0.3"
         sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_d4ebabc34e8d27b96791a3f8a1d0d43bebe1db65/classes.dex" />
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_b22b6abc5df8b288e04ae6ef5bac948c893b93b8/classes.dex" />
     </item>
     <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        is-multidex="true"
+        jar="/Users/lala/Library/Android/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
         jumboMode="true"
-        revision="23.0.3"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_598bcbbe68e9470317e6ff109f51366360279650/classes.dex" />
-    </item>
-    <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_cca37c5fa2f0e6b0d11f17f686a131047c48bfa0/classes.dex" />
-    </item>
-    <item
-        jar="/home/hrishi/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
+        optimize="true"
         revision="23.0.3"
         sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_e5e4237d8c980838a1fc5cbbd2610e1a1e71f682/classes.dex" />
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_9a866f2809fc65930e87a4c61d68d235f8d12ea4/classes.dex" />
     </item>
     <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
         jumboMode="true"
-        revision="23.0.3"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_0b7e8c284b4abd642811e896762b686cfcc9688d/classes.dex" />
-    </item>
-    <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="f9ca7da987e9a0ae749f39e112abc3843bf8f5e6">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_2214616c3c082481d9125ad698b37000e289ae71/classes.dex" />
-    </item>
-    <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
+        optimize="true"
         revision="23.0.3"
         sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_cdc4b90eea08803cedea164d158cda20680506ae/classes.dex" />
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_724961932e7e95f86e4624d0dd527dfa54aba591/classes.dex" />
     </item>
     <item
-        jar="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
         jumboMode="true"
+        optimize="true"
         revision="23.0.3"
-        sha1="7dafdd8ff24c54559f3d1a4a9546b1d080114678">
-        <dex dex="/home/hrishi/AndroidStudioProjects/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_36c78aaef7433e91bdbe12ca9efa3d8427e5d8dc/classes.dex" />
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_1e5129f11cfffeeaab5d2015c2b897f8f7627c28/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_625cd39cfcfa9809d425d91c44064746510a03fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b8815e4c07be1b1183c64dad0b28d922ce6b3ba2">
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c3bdbce18d3c360821702de4291af0b7f849a374/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4633b0229de3fd1922609e4f77bea59e785aa849">
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b349373890d0e64543823f2a26bf7d3dcc6a91a0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Volumes/LaureusHDD/LaureusIntelligentSystems/Hacktoberfest/TicTacToe/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_36051b702e3b3a210d51b527d4614c3c9b9e31d1/classes.dex" />
     </item>
 
 </items>

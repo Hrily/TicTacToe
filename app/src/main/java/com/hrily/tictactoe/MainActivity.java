@@ -35,16 +35,19 @@ public class MainActivity extends AppCompatActivity {
     // Array to calculate score of each triad
     int[] score_triad;
     // Array to calculate score of each cell
-    int[] score_cell;
+    //int[] score_cell;
+    float[] score_cell;
     // Whether the game in in progress or not
     boolean isRunning=false;
 
     // Constants
-    int X = 1;
-    int O = 0;
-    int UNMARKED = -1;
-    int N_CELLS = 9;
-    int N_TRIADS = 8;
+    final int X = 1;
+    final int O = 0;
+    final int UNMARKED = -1;
+    final int N_CELLS = 9;
+    final int N_TRIADS = 8;
+
+    int playerLastMovement = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 checkStatus();
             }
         }
+        playerLastMovement = index;
     }
 
     public void cpuPlay(){
@@ -109,73 +113,191 @@ public class MainActivity extends AppCompatActivity {
     public int getFavourableCell(){
         // Function to get the most favorable cell to make CPU move
 
-        // Calculate score of each triad
-        scoreTriad();
-        // Using scores of triads
-        // Calculate score of each cell
-        scoreCell();
-        // Find cell with max score
-        int maxi=0;
-        for(int i=0;i<N_CELLS;i++){
-            if(score_cell[maxi]<score_cell[i])
-                maxi  = i;
-        }
-        // Most favourable cell is the cell with max score
-        return maxi;
+
+        int activation = 0;
+        //Rule 1: if there is any triad which is a Winning movement do it.
+        activation = checkForWinningMovement();
+        if(activation != -1) return  activation;
+
+        //Rule 2: if there is any triad which is a enemy Winning movement block it.
+        activation = checkForBlockWinningMovement();
+        if(activation != -1) return  activation;
+
+        //Rule 3: if center is free use it!
+        activation = checkForCenter();
+        if (activation != -1) return activation;
+
+
+        //Rule 4: play a corner
+        activation = checkForCorners();
+        if (activation != -1) return activation;
+
+
+        //Rule 5: play a middle place
+        activation = checkForMiddles();
+        if (activation != -1) return activation;
+
+        return 0; // not reacheable...
     }
 
-    public void scoreTriad(){
-        // Function to calculate score of each triad
-        // CPU plays O
-        // Scoring is done based on number of Xs and Os
+    private int  checkForMiddles(){
 
-        // For each triad
-        for(int i=0;i<N_TRIADS;i++){
-            // Initialize score to 0
-            int score=0;
-            // Get number of Xs in the triad
-            int nX = getNX(i);
-            // Get number of Os in the triad
-            int nO = getNO(i);
+        int[] middles = {1, 5, 7, 3};
+        int[] score =  new int[4];
 
-            // If Os are 2 and Xs are 0
-            // This is the winning triad, score it with highest value
-            if(nO==2 && nX==0) score=6;
-
-            // If Xs are 2 and Os are
-            // This might be losing triad, better mark this
-            if(nO==0 && nX==2) score=5;
-
-            // Score other triads arbitrarily
-            if(nO==1 && nX==0) score=2;
-            if(nO==0 && nX==1) score=2;
-            if(nO==0 && nX==0) score=1;
-
-            // Finally store the score in array
-            score_triad[i]=score;
+        for (int i = 0; i < middles.length; i++){
+            if( matrix[middles[i]] != UNMARKED) continue; // score for this position is already 0
+            else{
+                //TODO add a more intelligent behaviour
+                score[i] +=1; // If it's not busy it's a good point
+            }
         }
+
+        int maxValue = -1, maxIndex = 0;
+        for (int i = 0; i < middles.length; i++){
+            if(score[i] > maxValue){
+                maxValue = score[i];
+                maxIndex = i;
+            }
+        }
+
+        if (maxValue == -1)
+            return -1;
+        else
+            return maxIndex;
     }
 
-    public void scoreCell(){
-        // Function to calculate score of each cell using scores of triads
+    private int  checkForCorners(){
 
-        // For each cell
-        for(int i=0;i<N_CELLS;i++){
-            // Initialize a default negative score
-            int score = -1;
-            // If the cell is mark able
-            if(matrix[i] == UNMARKED){
-                // Initialize score to zero
-                score = 0;
-                // Add score of each triad belonging to this cell
-                for(int j:triads_of_cell[i]){
-                    score += score_triad[j];
+        int[] corners = {0, 2, 6, 8};
+        int[] score =  new int[4];
+
+        for (int i = 0; i < corners.length; i++){
+            if( matrix[corners[i]] != UNMARKED) continue; // score for this position is already 0
+            else{
+                //Add score if neighbour cells are free or are AI's
+                for(int j: triads_of_cell[corners[i]]){
+                    if(matrix[triads[j][1]] == O) //If neighbours are AI is good for us.
+                        score[i] +=3;
+                    else if (matrix[triads[j][1]] == UNMARKED)
+                        score[i] +=1;
                 }
             }
-            // Finally store the calculated score
-            score_cell[i] = score;
         }
+
+        //search for max score corner
+        int maxValue = -1, maxIndex = 0;
+        for (int i = 0; i < corners.length; i++){
+            if(score[i] > maxValue){
+                maxValue = score[i];
+                maxIndex = i;
+            }
+        }
+
+        if (maxValue == -1)
+            return -1;
+        else
+            return corners[maxIndex];
+
     }
+
+
+    private int checkForCenter(){
+        if(matrix[4] != UNMARKED) return -1;
+        return 4;
+    }
+
+    private int checkForWinningMovement(){
+
+        //Check winning movement in the first column
+        if (matrix[0] == UNMARKED && matrix[1] == O && matrix[2] == O) return 0;
+        if (matrix[3] == UNMARKED && matrix[4] == O && matrix[5] == O) return 3;
+        if (matrix[6] == UNMARKED && matrix[7] == O && matrix[8] == O) return 6;
+
+        //Check winning movement in the second column
+        if (matrix[0] == O && matrix[1] == UNMARKED && matrix[2] == O) return 1;
+        if (matrix[3] == O && matrix[4] == UNMARKED && matrix[5] == O) return 4;
+        if (matrix[6] == O && matrix[7] == UNMARKED && matrix[8] == O) return 7;
+
+        //Chech  winning movement in the third column
+        if (matrix[0] == O && matrix[1] == O && matrix[2] == UNMARKED) return 2;
+        if (matrix[3] == O && matrix[4] == O && matrix[5] == UNMARKED) return 5;
+        if (matrix[6] == O && matrix[7] == O && matrix[8] == UNMARKED) return 8;
+
+        //Check winning movement in the first row
+        if (matrix[0] == UNMARKED && matrix[3] == O && matrix[6] == O) return 0;
+        if (matrix[1] == UNMARKED && matrix[4] == O && matrix[7] == O) return 1;
+        if (matrix[2] == UNMARKED && matrix[5] == O && matrix[8] == O) return 2;
+
+        //Check winning movement in the second row
+        if (matrix[0] == O && matrix[3] == UNMARKED && matrix[6] == O) return 3;
+        if (matrix[1] == O && matrix[4] == UNMARKED && matrix[7] == O) return 4;
+        if (matrix[2] == O && matrix[5] == UNMARKED && matrix[8] == O) return 5;
+
+        //Chech  winning movement in the third row
+        if (matrix[0] == O && matrix[3] == O && matrix[6] == UNMARKED) return 6;
+        if (matrix[1] == O && matrix[4] == O && matrix[7] == UNMARKED) return 7;
+        if (matrix[2] == O && matrix[5] == O && matrix[8] == UNMARKED) return 8;
+
+        //Check winning movement in the main diagonal
+        if (matrix[0] == UNMARKED && matrix[4] == O && matrix[8] == O) return 0;
+        if (matrix[0] == O && matrix[4] == UNMARKED && matrix[8] == O) return 4;
+        if (matrix[0] == O && matrix[4] == O && matrix[8] == UNMARKED) return 8;
+
+        //Chech  winning movement in the second diagonal
+        if (matrix[2] == UNMARKED && matrix[4] == O && matrix[6] == O) return 2;
+        if (matrix[2] == O && matrix[4] == UNMARKED && matrix[6] == O) return 4;
+        if (matrix[2] == O && matrix[4] == O && matrix[6] == UNMARKED) return 6;
+
+        return  -1; // this rule is not aplicable
+    }
+
+    private int checkForBlockWinningMovement(){
+        //Check winning movement in the first column
+        if (matrix[0] == UNMARKED && matrix[1] == X && matrix[2] == X) return 0;
+        if (matrix[3] == UNMARKED && matrix[4] == X && matrix[5] == X) return 3;
+        if (matrix[6] == UNMARKED && matrix[7] == X && matrix[8] == X) return 6;
+
+        //Check winning movement in the second column
+        if (matrix[0] == X && matrix[1] == UNMARKED && matrix[2] == X) return 1;
+        if (matrix[3] == X && matrix[4] == UNMARKED && matrix[5] == X) return 4;
+        if (matrix[6] == X && matrix[7] == UNMARKED && matrix[8] == X) return 7;
+
+        //Chech  winning movement in the third column
+        if (matrix[0] == X && matrix[1] == X && matrix[2] == UNMARKED) return 2;
+        if (matrix[3] == X && matrix[4] == X && matrix[5] == UNMARKED) return 5;
+        if (matrix[6] == X && matrix[7] == X && matrix[8] == UNMARKED) return 8;
+
+        //Check winning movement in the first row
+        if (matrix[0] == UNMARKED && matrix[3] == X && matrix[6] == X) return 0;
+        if (matrix[1] == UNMARKED && matrix[4] == X && matrix[7] == X) return 1;
+        if (matrix[2] == UNMARKED && matrix[5] == X && matrix[8] == X) return 2;
+
+        //Check winning movement in the second row
+        if (matrix[0] == X && matrix[3] == UNMARKED && matrix[6] == X) return 3;
+        if (matrix[1] == X && matrix[4] == UNMARKED && matrix[7] == X) return 4;
+        if (matrix[2] == X && matrix[5] == UNMARKED && matrix[8] == X) return 5;
+
+        //Chech  winning movement in the third row
+        if (matrix[0] == X && matrix[3] == X && matrix[6] == UNMARKED) return 6;
+        if (matrix[1] == X && matrix[4] == X && matrix[7] == UNMARKED) return 7;
+        if (matrix[2] == X && matrix[5] == X && matrix[8] == UNMARKED) return 8;
+
+        //Check winning movement in the main diagonal
+        if (matrix[0] == UNMARKED && matrix[4] == X && matrix[8] == X) return 0;
+        if (matrix[0] == X && matrix[4] == UNMARKED && matrix[8] == X) return 4;
+        if (matrix[0] == X && matrix[4] == X && matrix[8] == UNMARKED) return 8;
+
+        //Chech  winning movement in the second diagonal
+        if (matrix[2] == UNMARKED && matrix[4] == X && matrix[6] == X) return 2;
+        if (matrix[2] == X && matrix[4] == UNMARKED && matrix[6] == X) return 4;
+        if (matrix[2] == X && matrix[4] == X && matrix[6] == UNMARKED) return 6;
+
+        return  -1; // this rule is not aplicable
+    }
+
+
+   
 
     public int getNX(int i){
         // Function to get number of Xs in i'th triad
@@ -256,7 +378,8 @@ public class MainActivity extends AppCompatActivity {
         status.setText("");
         // Reset scores
         score_triad=new int[N_TRIADS];
-        score_cell=new int[N_CELLS];
+        score_cell = new float[N_CELLS];
+        //score_cell=new int[N_CELLS];
         // Start new game
         isRunning=true;
     }
